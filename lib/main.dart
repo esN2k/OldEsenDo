@@ -29,3 +29,24 @@ class ToDo extends StatelessWidget {
     ));
   }
 }
+
+final List<String> _todoList = <String>[];
+// text yazma yeri
+final TextEditingController _textFieldController = TextEditingController();
+
+void setState(Null Function() param0) {} //setState fix'i
+
+// Listeye veri ekleme
+void _addTodoItem(String baslik) {
+  //  a set state will notify the app that the state has changed
+  setState(() {
+    _todoList.add(baslik);
+  });
+  // the text field is cleared once the item is added to list
+  _textFieldController.clear();
+}
+
+//listeyi doldurma
+Widget _buildTodoItem(String baslik) {
+  return ListTile(title: Text(baslik));
+}
