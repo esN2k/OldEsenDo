@@ -2,11 +2,12 @@
 
 import 'package:flutter/material.dart';
 // Scaffold, Buton ve AppBar için gerekli kaynaklar.
-//Flutter bu paket ile geliyor. Genel olarak geliştiriciler işlerini kolaylaştırmak ve hızlandırmak için paketler kullanırlar. bkz. https://pub.dev/
+// Flutter bu paket ile geliyor. Genel olarak geliştiriciler işlerini kolaylaştırmak ve hızlandırmak için paketler kullanırlar. bkz. https://pub.dev/
 
 //void main() => runApp(
 //    MaterialApp(home: Todo()), //Material'dan gelen 1. class
 //); //MyApp verirse main'i çalıştır, vermez ise çalıştırma
+
 void main() {
   runApp(App());
 }
@@ -31,23 +32,71 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoListState extends State<TodoList> {
+  //veri kaydetme
   final List<String> _todoList = <String>[];
-  // text yazma yeri
+  // Text yazma yeri
   final TextEditingController _textFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     // Uygulama düzeni
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Yapılacaklar Listesi'),
-      ),
-      body: ListView(children: _getItems()),
-      // listeye ekleme yapma
+      appBar: AppBar(title: const Text('Yapılacaklar Listesi')),
+      // Listeye ekleme yapma
       floatingActionButton: FloatingActionButton(
           onPressed: () => _displayDialog(context),
-          tooltip: 'Add Item',
+          tooltip: 'Görev Ekleme',
           child: Icon(Icons.add)),
     );
+  }
+
+// Listeye veri ekleme
+  void _addTodoItem(String title) {
+    // Değişim olursa setState bildirecek
+    setState(() {
+      _todoList.add(title);
+    });
+    _textFieldController.clear();
+  }
+
+//listeyi doldurma
+  Widget _buildTodoItem(String title) {
+    return ListTile(
+      title: Text(title),
+    );
+  }
+
+//Bir widget
+// ismini sorma dialogu
+  Future<Future> _displayDialog(BuildContext context) async {
+    //isim sorma için state değiştirtme
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Listeye ekleme yap'),
+            content: TextField(
+              controller: _textFieldController,
+              decoration: const InputDecoration(hintText: 'Ekleme Yazın'),
+            ),
+            actions: <Widget>[
+              //ekleme butonu
+              TextButton(
+                child: const Text('Ekle'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _addTodoItem(_textFieldController.text);
+                },
+              ),
+              //iptal butonu
+              TextButton(
+                child: const Text('İptal'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
 }
