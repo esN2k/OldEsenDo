@@ -42,6 +42,7 @@ class _TodoListState extends State<TodoList> {
     // Uygulama düzeni
     return Scaffold(
       appBar: AppBar(title: const Text('Yapılacaklar Listesi')),
+      body: ListView(children: _getItems()),
       // Listeye ekleme yapma
       floatingActionButton: FloatingActionButton(
           onPressed: () => _displayDialog(context),
@@ -98,5 +99,14 @@ class _TodoListState extends State<TodoList> {
             ],
           );
         });
+  }
+
+// Tekrarlama
+  List<Widget> _getItems() {
+    final List<Widget> _todoWidgets = <Widget>[];
+    for (String title in _todoList) {
+      _todoWidgets.add(_buildTodoItem(title));
+    }
+    return _todoWidgets;
   }
 }
