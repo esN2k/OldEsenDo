@@ -1,67 +1,24 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
-void main() {
-  runApp(const MyApp());
-}
+import 'package:flutter/material.dart'; // Scaffold, Buton ve AppBar için gerekli kaynaklar
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+void main() => runApp(
+      MaterialApp(home: ToDo()), //Material'dan gelen 1. class
+    ); //MyApp sonuç verirse main'i çalıştır, vermez ise çalıştırma
 
+class ToDo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //Widget iskeleti
+    // uygulamanın iskeleti
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+        //Material'dan gelen 2. class
+        home: Scaffold(
+      //Material'dan gelen 3. class
       appBar: AppBar(
-        title: Text(widget.title),
+        //Material'dan gelen 4. class
+        title: Text('Yapılacaklar Listesi'), //1. Widget
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+    ));
   }
 }
