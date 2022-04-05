@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unused_element
 
 import 'package:flutter/material.dart';
+
 // Scaffold, Buton ve AppBar için gerekli kaynaklar.
 // Flutter bu paket ile geliyor. Genel olarak geliştiriciler işlerini kolaylaştırmak ve hızlandırmak için paketler kullanırlar. bkz. https://pub.dev/
 
