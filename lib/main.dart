@@ -1,5 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unused_element
-
 import 'package:flutter/material.dart';
 
 // Scaffold, Buton ve AppBar için gerekli kaynaklar.
